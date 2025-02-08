@@ -24,13 +24,20 @@
     // Configurações do Firebase (substitua pelos seus dados)
     const firebaseConfig = {
       apiKey: "AIzaSyAiXoLq7G-7YDndNmnwHxlxZXnDTBLcR7Q",
+      authDomain: "mathfun-game.firebaseapp.com",
       databaseURL: "https://mathfun-game-default-rtdb.firebaseio.com/",
-      projectId: "mathfun-game"
+      projectId: "mathfun-game",
+      storageBucket: "mathfun-game.appspot.com",
+      messagingSenderId: "123456789",
+      appId: "1:123456789:web:abc123"
     };
 
     // Inicializa o Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const database = firebase.getDatabase(app);
+    import { initializeApp } from "firebase/app";
+    import { getDatabase, ref, set } from "firebase/database";
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
 
     // Manipulação do formulário
     const form = document.getElementById('data-form');
@@ -41,10 +48,10 @@
       const mensagem = document.getElementById('mensagem').value;
 
       // Referência ao Realtime Database
-      const dbRef = firebase.ref(database, 'mensagens/' + Date.now());
+      const dbRef = ref(database, 'mensagens/' + Date.now());
 
       // Envia os dados para o banco
-      firebase.set(dbRef, {
+      set(dbRef, {
         nome: nome,
         mensagem: mensagem
       })
