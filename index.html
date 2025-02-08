@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enviar dados para Firebase</title>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
+</head>
+<body>
+  <h1>Enviar dados para Firebase Realtime Database</h1>
+
+  <form id="data-form">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required>
+    
+    <label for="mensagem">Mensagem:</label>
+    <input type="text" id="mensagem" name="mensagem" required>
+    
+    <button type="submit">Enviar</button>
+  </form>
+
+  <script>
+    // Configurações do Firebase (substitua pelos seus dados)
+    const firebaseConfig = {
+      apiKey: "AIzaSyAiXoLq7G-7YDndNmnwHxlxZXnDTBLcR7Q",
+      databaseURL: "https://mathfun-game-default-rtdb.firebaseio.com/",
+      projectId: "mathfun-game"
+    };
+
+    // Inicializa o Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const database = firebase.getDatabase(app);
+
+    // Manipulação do formulário
+    const form = document.getElementById('data-form');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const nome = document.getElementById('nome').value;
+      const mensagem = document.getElementById('mensagem').value;
+
+      // Referência ao Realtime Database
+      const dbRef = firebase.ref(database, 'mensagens/' + Date.now());
+
+      // Envia os dados para o banco
+      firebase.set(dbRef, {
+        nome: nome,
+        mensagem: mensagem
+      })
+      .then(() => {
+        alert('Dados enviados com sucesso!');
+        form.reset();
+      })
+      .catch((error) => {
+        alert('Erro ao enviar dados: ' + error.message);
+      });
+    });
+  </script>
+</body>
+</html>
